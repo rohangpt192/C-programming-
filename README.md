@@ -5,3 +5,5 @@ C PROGRAMMING FOR BEGINNERS - FULL COURSE - Theory + 101 Programs Video tutorial
 5 hour 46 min of tutorial video
 you can watch and download the video in 720p on belllow
 https://www.youtube.com/watch?v=vl794HKeXug
+Program Note.c will based on this video with tons of extra example and fix some error by tutorial video , if you are stuck on some issues
+Afterdone.c will be some extra example of c which is not based on this video. which would come from various source 
