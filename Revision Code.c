@@ -624,6 +624,8 @@ void main()
     5=   0  0   0   0  0  0 0 1 0 1
 
 */
+
+-------------------------------------------------------------
 #include <stdio.h>
 #include <conio.h>
 void main()
@@ -651,6 +653,7 @@ void main()
     getch();
 }
 
+-------------------------------------------------------------
 #include <stdio.h>
 #include <conio.h>
 void main()
@@ -709,7 +712,7 @@ void main()
     }while(1);
 
 }
-
+-------------------------------------------------------------
 #include <stdio.h>
 #include <conio.h>
 void print1(void)
@@ -749,7 +752,8 @@ let's explain what's going on memory whenever function calls
 } //done
 
 */
-//Takes nothing, Return nothing in way to define function
+---------------------------------------------------------------------
+//Takes nothing, Return nothing (way to define function)
 #include <stdio.h> //stdio.h means standard input output
 #include <conio.h> //console which is used for dos or turbo C and some complier in windows based GCC
 void add(void); //function prototype
@@ -768,7 +772,8 @@ void add()  //<--------|
 
 } //after done function task ,it return back to main() where add(); calls done
 
-//Takes Something, Return nothing in way to define function
+-------------------------------------------------------------
+//Takes Something, Return nothing (way to define function)
 #include <stdio.h>
 #include <conio.h>
 //void add(int,int); //This declaration is global declaration which apply on whole code/program
@@ -790,7 +795,8 @@ void add(int a,int b) //formal argument which copied values from x & y to a & b
 
 } //after done function task ,it get back to main() after add(); called
 
-//Takes nothing, Return something in way to define function
+-------------------------------------------------------------
+//Takes nothing, Return something (way to define function)
 #include <stdio.h>
 #include <conio.h>
 int add(void);
@@ -816,7 +822,9 @@ case #1: return a,b,c; only c will be return
 case #2: use bracket if you want return something more than one variable like
 return (a+b);
 */
-//Takes something, Return something in way to define function
+
+-------------------------------------------------------------
+//Takes something, Return something (way to define function)
 #include <stdio.h>
 #include <conio.h>
 int add(int ,int);
@@ -856,6 +864,7 @@ void main()
     getch();
 }
 
+-------------------------------------------------------------
 //Example of array by myself
 #include <stdio.h>
 #include <conio.h>
@@ -874,7 +883,7 @@ void main()
     }
 }
 
-
+-------------------------------------------------------------
 //Test the program to run the while loop until i==0
 #include <stdio.h>
 #include <conio.h>
@@ -891,6 +900,7 @@ void main()
 
 }
 
+-------------------------------------------------------------
 #include <stdio.h>
 void main()
 {
@@ -904,6 +914,7 @@ void main()
 
 }
 
+-------------------------------------------------------------
 #include <stdio.h>
 #include <conio.h>
 void main()
@@ -921,6 +932,7 @@ void main()
     getch();
 }
 
+-------------------------------------------------------------
 #include <stdio.h>
 #include <conio.h>
 void main()
@@ -943,6 +955,7 @@ void main()
 
     getch();
 }
+-------------------------------------------------------------
 #include <stdio.h>
 #include <conio.h>
 void main()
@@ -957,7 +970,7 @@ void main()
     }
     getch();
 }
-
+-----------------------------------------------------
 //A very simple program to understand two dimensional array
 #include <stdio.h>
 #include <conio.h>
@@ -988,7 +1001,36 @@ void main()
     getch();
 }
 
+---------------------------------------------------------------
+//Write a program to check if you are able to pass out array through the function
+#include <stdio.h>
+#include <conio.h>
+//by using take nothing and nothing return (way to define function)
+void array1()
+{
+    printf("Write a program to find out avg of input\n");
+    int i,sum=0,n,arr[100];
+    float avg;
+    printf("Enter the limit avg:");
+    scanf(" %d",&n);
+    printf("Enter the number\n");
+    for(i=0;i<n;i++)
+       scanf(" %d",&arr[i]);
 
+    for(i=0;i<n;i++)
+    {
+        sum= sum+arr[i];
+    }
+    avg=sum/n;
+    printf("Avg:%.2f",avg);
+
+}
+void main()
+{
+    array1();
+
+    getch();
+}
 
 
 
