@@ -88,6 +88,7 @@ int main()
     return 0;
 }
 
+
 //Example #4
 //use of goto predefine function in gcc complier
 #include <stdio.h>
@@ -116,10 +117,136 @@ void main()
     }
     getch();
 
+}
+-------------------------------------------------------------------------------
+//05-10-2020
+//for revision purpose
+#include <stdio.h>
+#include <conio.h>
+void main()
+{
+    printf("Write a program to test yourself to build program which denote\nThe pre-increment and post-increment operators\n");
+    int i,ch,op;
+    do{
+    printf("Enter the number: ");
+    scanf(" %d",&i);
+    printf("input value is %d\n",i);
+    printf("Choose the option\n");
+    puts("#1- post +ve increment");
+    puts("#2- post -ve increment");
+    puts("#3- pre  +ve increment");
+    puts("#4- pre  -ve increment");
+    puts("#5- all increment");
+    puts("#6- previous increment");
+    puts("#7- simple way increment");
+    puts("NOTES:\n Post increment is lower Priority than Pre-increment");
+    puts("Post increment i++: i=i+1\nPre increment ++i: i+1=i");
+    printf("Input your choose: ");
+    scanf(" %d",&ch);
+    /*printf("Please Enter the number: ");
+    scanf(" %d",&i);
+    printf("The value you have entered: %d\n",i);
+    printf("and Please choose the option showing above: ");
+    scanf(" %d",&ch);
+    */
+    switch(ch)
+    {
+    case 1:
+    printf("Before the post +ve increment:%d\n",i);
+    printf("Post  +ve increment,\ni++ =%d",i++);
+    printf("\n\tAfter the post +ve increment:%d",i);
+    break;
 
+    case 2:
+    printf("Before the post -ve increment:%d\n",i);
+    printf("Post  -ve increment,\ni-- =%d",i--);
+    printf("\n\tAfter the post -ve increment:%d",i);
+    break;
+
+    case 3:
+    printf("Before the pre +ve increment:%d\n",i);
+    printf("Pre  +ve increment,\n++i =%d",++i);
+    printf("\n\tAfter the pre +ve increment:%d",i);
+    break;
+
+    case 4:
+    printf("Before the pre -ve increment:%d\n",i);
+    printf("Pre  -ve increment,\n--i =%d",--i);
+    printf("\n\tAfter the pre -ve increment:%d",i);
+    break;
+
+    case 5:
+    printf("All increment\n");
+    printf("Enter the number");
+    scanf(" %d",&i);
+    printf(" Before i++: %d\n",i);
+    printf("i++ %d\n",i++);
+    printf(" After i++: %d\n\n",i);
+
+    printf(" Before ++i: %d\n",i);
+    printf("++i %d\n",++i);
+    printf(" After ++i: %d\n\n",i);
+
+    printf(" Before i--: %d\n",i);
+    printf("i-- %d\n",i--);
+    printf(" After i--: %d\n\n",i);
+
+    printf(" Before --i: %d\n",i);
+    printf("--i %d\n",--i);
+    printf(" After --i: %d\n\n",i);
+
+    break;
+
+    case 6:
+    printf("\nInput i= %d in pre-increment(++i) ",++i);
+    printf("\nAfter pre-increment: %d",i);
+
+    printf("\nInput i= %d in post-increment(i++||i=i+1) ",i++);
+    printf("\nAfter post-increment: %d",i);
+
+    printf("\nInput i= %d in pre-increment(--i) ",--i);
+    printf("\nAfter pre-decrement: %d",i);
+
+    printf("\nInput i= %d in pre-increment(i--||i=i-1) ",i--);
+    printf("\nAfter pre-decrement: %d",i);
+    break;
+
+    case 7:
+    printf("simple way increment\n");
+    printf(" Before i++: %d\n",i);
+    printf("i++ %d\n",i++);
+    printf(" After i++: %d\n\n",i);
+
+    printf(" Before ++i: %d\n",i);
+    printf("++i %d\n",++i);
+    printf(" After ++i: %d\n\n",i);
+
+    printf(" Before i--: %d\n",i);
+    printf("i-- %d\n",i--);
+    printf(" After i--: %d\n\n",i);
+
+    printf(" Before --i: %d\n",i);
+    printf("--i %d\n",--i);
+    printf(" After --i: %d\n\n",i);
+    break;
+
+    default:
+        printf("Invalid input");
+        break;
+    }
+    printf("\nDo you want to continue this\nPress 1");
+    scanf(" %d",&op);
+    if(op==1)
+    {
+        system("cls");
+    }
+    else
+    {
+        printf("Process has been terminated");
+    }    }while(op==1);
+    getch();
 
 }
-
-
+//this code is not larger than you think,try the example
 
 
