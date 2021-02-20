@@ -1032,16 +1032,304 @@ void main()
     getch();
 }
 
+------------------------------------------------------------
+//string example in many nothing take and nothing return array
+#include <stdio.h>
+#include <conio.h>
+void string1()
+{
+    printf("Example #1: ");
+    char s[10]={'R','O','H','A','N','\0'};
+    int i;
+    for(i=0;i<5;i++)// || for(i=0;i<=4;i++)
+        printf("%c",s[i]);
+    //string2();//one function call from this side
+}
+void string2()
+{
+    char s[10]={'R','O','H','A','N','\0'};
+    int i;
+    printf("\nExample #2: ");
+    for(i=0;s[i]!='\0';i++)
+        printf("%c",s[i]);
+    //string1(); if u call same function in both side it'll go to recursion loop in both function
+}
+void string3()
+{
+   // char s[10]={'R','O','H','A','N','\0'};
+    char s[10]="ROHAN";
+    int i,ch;
+    printf("\nExample #3:\n");
+ // puts("#1 printf:%s");
+ // puts("#2 puts( s )");
+ // scanf(" %d",&ch);
+   // if(ch==1)
+    printf("%s\n",s);// %s = sequence of char or string
+   //else if(ch==2)
+    puts(s);
+
+}
+void string4()
+{
+    char s[10];
+    printf("Enter the character less than 10:\n");
+    //scanf(" %s",s); //scanf("%s",&s[0]);
+    gets(s);
+    printf("%s",s);
+}
+void main()
+{
+    string1();
+    string2();
+    string3();
+    string4();
+
+    getch();
+}
 
 
+#include <stdio.h>
+#include <conio.h>
+void main()
+{
+    char s[3][10];
+    int i;
+    printf("Enter the names:\n");
+    for(i=0;i<=2;i++)
+        gets(&s[i][0]);// gets(s[i]);
+    printf("Print:\n");
+    for(i=0;i<=2;i++)
+        puts(s[i]);//printf("%s\n",s[i]);
+}
+----------------------------------------
+//find out address of input Numbers
+#include <stdio.h>
 
+int main()
+{
+    int i=5;
+   printf("%d\n",i);
+   printf("%u\n",&i);
+   printf("%d\n",*&i);
+    return 0;
+}
+/*
+Variable is :5
+Address  is :6422296
+*/
+--------------------------------------------
+//find out address of input Numbers
+#include <stdio.h>
+#include <conio.h>
 
+int main()
+{
+int x=5,*j;
+j=&x;
+//clrscr();
+printf("x=%d\n",x);
+printf("j=%d\n",j);
+printf("*j=%d\n",*j);
+printf("x=%d,j=%u\n",x,j);
+printf("*j=%d,&x=%u\n",*j,&x);
+printf("*&j=%u",*&j);
+getch();
+return 0;
+}
+/*
+Output
+x=5
+j=6422300
+*j=5
+x=5,j=6422300
+*j=5,&x=6422300
+*&j=6422300
 
+*/
+#include <stdio.h>
+#include <conio.h>
+void main()
+{
+    int x=5, *p,**q,***r;
+    //Extended concept of the pointers
+    p=&x;
+    q=&p;
+    r=&q;
+    printf("x=%d\n",x);
+    printf("p=%d\n",p);
+    printf("q=%d\n",q);
+    printf("r=%d\n",r);
+    printf("*p=%d\n",*p);
+    printf("*q=%d\n",*q);
+    printf("**q=%d\n",**q);
+    printf("*r=%d\n",*r);
+    printf("**r=%d\n",**r);
+    printf("***r=%d\n",***r);
+    getch();
+}
+/*
+x=5
+p=6422296
+q=6422292
+r=6422288
+*p=5
+*q=6422296
+**q=5
+*r=6422292
+**r=6422296
+***r=5
+*/
+---------------------------------------------------------------
+//In Turbo c
+main()
+{
+int x=5, *p,**q,***r;
+    p=&x;
+    q=&p;
+    r=&q;
+clrscr();
+    printf("x=%d\n",x);
+    printf("p=%u\n",p);
+    printf("q=%u\n",q);
+    printf("r=%u\n",r);
+    printf("*p=%u\n",*p);
+    printf("*q=%u\n",*q);
+    printf("**q=%u\n",**q);
+    printf("*r=%u\n",*r);
+    printf("**r=%u\n",**r);
+    printf("***r=%u\n",***r);
+getch();
+}
+---------------------------------------------------------------------
+//find out address of input Numbers
+#include <stdio.h>
+#include <conio.h>
+void main()
+{
+    int x=5, *p,**q,***r;
+    p=&x;
+    q=&p;
+    r=&q;
+/*
+pointer's Arithmetic
+* we cannot add, multiply or divide two addresses (Subtraction is Possible)
+* we cannot multiply an integer to an address and similarly we cannot divide an address with an integer value
+* we can add or subtract integer to/from an address
+* Pointer+n= pointer+ sizeof(type of pointer)*n
+* We can subtract two addresses of same type.
+* Pointer1-pointer2=Literal subtraction/sizeof(type of pointer)
+p+1 1002
+p+4 1000+2*4=1008
+p-1 998
+*/
+printf("  p=%d (p)\n",p);
+printf("p+1=%d (p+2*n)\n",p+1);//int takes 2 bit in 16 bit Architecture,int takes 4 bit in 32 bit Architecture
+printf("p-1=%d (p-2*n)\n",p-1);
+    getch();
+}
+----------------------------------------------------------------------------
+//Application of pointer where, its call by reference.
+#include <stdio.h>
+#include <conio.h>
+//void swap(int *,int *); function prototype
+void swap(int *x,int *y)
+{
+   int t;
+   t=*x;
+   *x=*y;
+   *y=t;
+}
 
+void main()
+{
+   int a,b;
+   printf("Enter two numbers: ");
+   scanf(" %d %d",&a,&b);
+   printf("Input of a=%d and b=%d\n",a,b);
+   swap(&a,&b);
+   printf("Swap a=%d & b=%d",a,b);
+   getch();
+}
+-----------------------------------------------------------------------------
+#include <stdio.h>
+#include <conio.h>
+void arr()
+{
+    int i,a[5],*p;
+    p=&a[0];
+    printf("take input array through pointer: ");
+    for(i=0;i<=4;i++)
+        scanf(" %d",p+i);
+    printf("Printed array through array");
+    for(i=0;i<=4;i++)
+        printf(" %d",*(p+i));
+}
 
+void point()
+{
+    int i,a[50],n;
+    printf("Enter the limit of array input:");
+    scanf(" %d",&n);
+    puts("take input array normally way: ");
+    for(i=0;i<n;i++)
+        scanf(" %d",&a[i]);
+    printf("Printed array normally way");
+    for(i=0;i<n;i++)
+        printf(" %d",*&a[i]);
+}
+void main()
+{
+    arr();
+    printf("\n");
+    point();
 
+   getch();
+}
+---------------------------------------------------------
+//use pointer && array, make bubble sort code
+#include <stdio.h>
+#include <conio.h>
 
+void input(int *p)//where *p is decoding address
+{
+   int i;
+   for(i=0;i<=4;i++)
+      scanf(" %d",p+i);//where p is &a[i]
+}
+void display(int *p)
+{
+   int i;
+   for(i=0;i<=4;i++)
+      printf(" %d",*(p+i));//where p is &a[i]
+}
 
-
-
+void bubblesort(int *p)
+{
+	int round,t,i;
+	for(round=1;round<=4;round++)
+	{
+		for(i=0;i<=4-round;i++)
+		{
+		  if(*(p+i) >*(p+i+1))
+		  {
+			 t=*(p+i); //a[i] is *(p+i) because we take taking address we cant allow a[i] here
+             *(p+i)=*(p+i+1);
+             *(p+i+1)=t;
+		  }
+		}
+	}
+}
+void main()
+{
+  int a[5];
+  puts("taking five inputs:");
+  input(a);//passing array through pointer
+  printf("\nshowing input:");
+  display(a);//display input through pointer
+  printf("\nAfter apply bubble sort:");
+  bubblesort(a);
+  display(a);
+  getch();
+}
+------------------------------------------------------------------
 
