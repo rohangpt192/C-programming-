@@ -1464,7 +1464,171 @@ A word of s1[3]:h
 A word of s1[4]:a
 A word of s1[5]:n
 A word of s1[6]:  //where this one is '\0' aka null character
-/*
+*/
 -------------------------------------------------------
+//14-03-2021
+//Today date program
+#include <stdio.h>
+#include <conio.h>
+void main()
+{
+    char day[20];
+    int date,month,year;
+    printf("Input the today day and date (dd-mm--yyyy)\n");
+    scanf(" %s %d-%d-%d",day,&date,&month,&year);
+    printf("Day:  %s\n",day);
+    printf("Date: %d\n",date);
+    printf("Month:%d\n",month);
+    printf("Year: %d\n",year);
+
+}
+-------------------------------------------------------------
+//14-03-2021
+//Today date program
+#include <stdio.h>
+#include <conio.h>
+struct date
+{
+    int d,m,y;
+};
+
+void main()
+{
+    struct date today,d1;
+    today.d=14;
+    today.m=3;
+    today.y=2021;
+
+    d1=today; // ||d1.d=today.d;
+    printf("Date you have valued: %d/%d/%d\n",d1.d,d1.m,d1.y);
+    printf("Enter today's date");
+    scanf(" %d/%d/%d",&d1.d,&d1.m,&d1.y); // to update d1 value data
+    printf("Date you have input: %d/%d/%d",d1.d,d1.m,d1.y);
+
+}
+-----------------------------------------------------------------------
+//example of structure in function
+#include <stdio.h>
+#include <conio.h>
+struct book
+{
+    int bookid;
+    char title[30];
+    float price;
+};
+struct book input()
+{
+    struct book b;
+    printf("Enter the Book id,Title and price\n");
+    //scanf(" %d %s %f",&b.bookid,b.title,&b.price);
+    scanf("%d",&b.bookid);// Note: after taking input from scanf,
+    fflush(stdin);//to solve this problem we are taking fflush(stdin) to empty buffer from input
+    gets(b.title); // gets could find empty buffer on program
+    scanf(" %f",&b.price);// so, it wont try to take input from this scanf
+    return(b);
+
+}
+void display(struct book b)
+{
+  //printf("\n %d %s %f",b.bookid,b.title,b.price);
+  printf("Book ID:%d Title:%s and Price:%.2f",b.bookid,b.title,b.price);
+}
+void main()
+{
+    struct book b1;
+    b1=input();//take nothing and returb
+    display(b1);
+
+}
+-----------------------------------------------------------------------------------
+//Union: Union members are accessed in the same manner as
+//we access structure member and Union is able to print one data in one time
+#include <stdio.h>
+union item
+{
+    int x; float y; char z;
+};
+
+void main()
+{
+    union item i1;
+    i1.x=5;
+    printf("\nx=%d",i1.x);
+    i1.y=3.4;
+   // printf("\n%f",i1.y);
+    printf("\nx=%d",i1.x);
+    i1.z='d';
+    printf("\nz=%c",i1.z);
+
+}
+---------------------------------------------------------------------------------
+//same example apply on structure
+#include <stdio.h>
+struct item1
+{
+    int x; float y; char z;
+};
+union item2
+{
+    int x; float y; char z;
+};
 
 
+void main()
+{
+    int ch,re;
+    puts("#1-structure");
+    puts("#2-union");
+    do{
+    printf("choose the option:");
+    scanf(" %d",&ch);
+    if(ch==1)
+    {
+    struct item1 i1;
+    printf("Structure example");
+    i1.x=5;
+    printf("\nx=%d",i1.x);
+    i1.y=3.4;
+    printf("\ny=%.2f",i1.y);
+    printf("\nx=%d",i1.x);
+    i1.z='d';
+    printf("\nz=%c",i1.z);
+    }
+    else if(ch==2)
+    {
+    union item2 i1;
+    printf("Union example");
+    i1.x=5;
+    printf("\nx=%d",i1.x);
+    i1.y=3.4;
+    printf("\ny=%.2f",i1.y);
+    printf("\nx=%d",i1.x);
+    i1.z='d';
+    printf("\nz=%c",i1.z);
+    }
+    else
+        printf("invalid input");
+    printf("\nPress 1 to repeat the process: ");
+    scanf(" %d",&re);
+    }while(re==1);
+
+}
+/*
+#1-structure
+#2-union
+choose the option:1
+Structure example
+x=5
+y=3.40
+x=5
+z=d
+Press 1 to repeat the process: 1
+choose the option:2
+Union example
+x=5
+y=3.40
+x=1079613850
+z=d
+Press 1 to repeat the process: 2
+
+*/
