@@ -1632,3 +1632,142 @@ z=d
 Press 1 to repeat the process: 2
 
 */
+---------------------------------------------------------------------------------
+//23-03-2021
+#include <stdio.h>
+#include <conio.h>
+/*
+Enumerator: it gives an opportunity to invent own data type and
+define what values the variable of this data type can take.
+* Internally, compiler treats the enumerators as integers
+* Each value on this list of permissible values corresponds
+to an integer, starting with 0.
+
+*/
+
+enum boolean
+{
+    false, true//0,1
+};
+
+enum boolean isEven(int x)
+{
+    if(x%2==0)
+        return(true);// return 1;
+    else
+        return(false);// return 0;
+}
+
+void main()
+{
+    int n;
+    enum boolean result;
+    printf("Enter a number");
+    scanf(" %d",&n);
+    result=isEven(n);
+    if(result==true)
+        printf("Even");
+    else
+        printf("odd");
+}
+-------------------------------------------------------
+//24-03-2021
+#include <stdio.h>
+#include <string.h>
+#include <conio.h>
+/*
+* typedef is a keyword, where we can use typedef to give new name to a type
+  typedef int LENGTH;     // you can also write in small letter,
+but CAPTITAL is better for define typedef keyword
+* Now you can use LENGTH as a data type which is just same as int
+LENGTH x,y;
+* By convention, uppercase letters are used for these definitions to remind
+the user that the type name is really a symbolic abbreviation
+but you cab use lowercase
+
+typedef int length;
+*/
+typedef struct
+{
+    int rollno;
+    char name[20];
+    int age;
+}STUDENT;
+void main()
+{
+    STUDENT s1;
+    s1.rollno=34;
+    strcpy(s1.name,"RoyalDemon");
+    s1.age=20;
+    printf("Roll_no: %d,Name: %s,age: %d",s1.rollno,s1.name,s1.age);
+
+}
+--------------------------------------------------------------------
+// use #define preprocessor to make program
+//example 1
+#include <stdio.h>
+#define pi 3.14
+#include <conio.h>
+/*
+* The #define directive defines an identifier and character sequences (a set of character)
+that will be substituted for the identifier each time it is encountered in the source files
+* The identifier is referred to as a macro name and the replacement process as macro replacement
+#define macro-name char-sequence
+*/
+void main()
+{
+    int r; float a;
+    printf("Enter value of radius");
+    scanf(" %d",&r);
+    a=pi*r*r;
+    printf("Area of circle : %.2f",a);
+
+}
+-------------------------------------------------------------------------
+//example 2
+//#include <stdio.h>//  you can skip this preprocessor if you want but this thing is still require if you are gonna use printf or scanf function
+#define SUM(a,b) a+b
+
+void main()
+{
+    printf("sum of 5 and 6: %d",SUM(5,6));
+    //sum of 5 and 6: 11
+
+}
+
+-------------------------------------------------------------------------
+//example 3
+#include <stdio.h>
+#define SUM(a,b) a+b
+#define PRODUCT(a,b) a*b
+#define PRODUCT2(a,b) (a)*(b)
+
+void main()
+{
+    printf("sum of 5 and 6: %d",SUM(5,6));
+    //sum of 5 and 6: 11
+    printf("\nProduct of 5 and 6:%d",PRODUCT(5,6));
+    //Product of 5 and 6:30
+    printf("\nProduct :%d",PRODUCT(3+2,4-6));//3+2*4-6
+    //Product :5
+    //because multiply problem solve first then addition and subtraction
+    printf("\nProduct2 :%d",PRODUCT2(3+2,4-6));//(3+2)*(4-6)
+    //Product2 :-10
+
+}
+
+/*
+#undef
+* it is used to undefined Macros aka disable #define preprocessor after #undef
+for example
+#define CLOSE 0
+.....
+.....
+.....
+.....
+#undef CLOSE
+.....
+.....
+*/-----------------------------------------------------------------------
+
+
