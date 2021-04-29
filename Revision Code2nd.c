@@ -1973,9 +1973,6 @@ void fileappend()
 }
 void filewrite()
 {
-    /*
-
-    */
    char str[20];
    FILE *fp;
    fp=fopen("f1.txt","w");
@@ -2041,8 +2038,68 @@ int main()
     }while(opt==1);
 }
 -------------------------------------------------------------
+//29-04-2021
+#include <stdio.h>
+/*
+fwrite()
+* fwrite() function is used to write content to the file in binary mode.
+* Syntax:
+  int fwrite(void *Buffer,int Size,int Count,FILE *ptr);
+*/
+struct book
+{
+  int bookid;
+  char title[20];
+  float price;
+};
 
+void main()
+{
+   struct book b1;
+   FILE *fp;
+   fp=fopen("myfile.dat","ab");//ab = ascend binary mode
+   printf("Enter bookid,Title and price:\n");
+   scanf(" %d",&b1.bookid);
+   fflush(stdin); //to clean buffer from memory
+   gets(b1.title);
+   scanf(" %f",&b1.price);//it will get skipped if buffer was empty
+   fwrite(&b1,sizeof(b1),1,fp);
+   fclose(fp);
+   printf("File has been written successfully");
 
+}
+--------------------------------------------------------
+#include <stdio.h>
+/*
+fread()
+* fread() function is used to read content from file in binary mode.
+* int fread(void *Buffer,int Size,int Count,FILE *ptr);
+*/
+struct book
+{
+  int bookid;
+  char title[20];
+  float price;
+};
 
+void main()
+{
+   struct book b1;
+   FILE *fp;
+
+   fp=fopen("myfile.dat","rb");//read binary mode
+   if(fp==NULL)
+   { printf("File 404 not found");
+      exit(1); }
+    printf("BookId Title Price\n");
+
+   while(fread(&b1,sizeof(b1),1,fp)>0)
+   {   printf("%d. %s %.2f\n",b1.bookid,b1.title,b1.price); }
+
+   fclose(fp);
+
+}
+
+---------------------------------------------------
 
 
