@@ -2022,6 +2022,7 @@ int main()
     break;
    case 3:
     fileappend();
+    break;
    default:
        printf("Invalid input");
     break;
@@ -2085,8 +2086,46 @@ struct book
 void main()
 {
    struct book b1;
+   int a;
    FILE *fp;
 
+   fp=fopen("myfile.dat","rb");//read binary mode
+   if(fp==NULL)
+   { printf("File 404 not found");
+      exit(1); }
+    printf("BookId Title Price\n");
+
+   while(fread(&b1,sizeof(b1),1,fp)>0) //skip them
+   {   printf("%d. %s %.2f\n",b1.bookid,b1.title,b1.price); } //skip them
+
+   /*
+   printf("reason to use while .. >0\n");
+   a=fread(&b1,sizeof(b1),1,fp);
+   printf("a=%d\n",a);
+
+   a=fread(&b1,sizeof(b1),1,fp);
+   printf("a=%d\n",a);
+
+   a=fread(&b1,sizeof(b1),1,fp);
+   printf("a=%d",a);
+   */
+
+   fclose(fp);
+
+}
+---------------------------------------------------
+//Experiment to use fwrite and fread
+#include <stdio.h>
+struct book
+{
+  int bookid;
+  char title[20];
+  float price;
+};
+
+void fred(struct book b1)
+{
+   FILE *fp;
    fp=fopen("myfile.dat","rb");//read binary mode
    if(fp==NULL)
    { printf("File 404 not found");
@@ -2100,6 +2139,74 @@ void main()
 
 }
 
+void fapd(struct book b1)
+{
+   FILE *fp;
+   fp=fopen("myfile.dat","ab");//ab = ascend binary mode
+   printf("Enter bookid,Title and price:\n");
+   scanf(" %d",&b1.bookid);
+   fflush(stdin); //to clean buffer from memory
+   gets(b1.title);
+   scanf(" %f",&b1.price);//it will get skipped if buffer was empty
+   fwrite(&b1,sizeof(b1),1,fp);
+   fclose(fp);
+   printf("File has been written successfully");
+
+}
+
+void fwrt(struct book b1)
+{
+   FILE *fp;
+   fp=fopen("myfile.dat","wb");//wb = write binary mode
+   printf("Enter bookid,Title and price:\n");
+   scanf(" %d",&b1.bookid);
+   fflush(stdin); //to clean buffer from memory
+   gets(b1.title);
+   scanf(" %f",&b1.price);//it will get skipped if buffer was empty
+   fwrite(&b1,sizeof(b1),1,fp);
+   fclose(fp);
+   printf("File has been written successfully");
+
+}
+void main()
+{
+   struct book b1;
+   int ch,opt;
+   do{
+   puts("#1 fWrite a file");
+   printf("Note: Old information will get erased\n");
+   puts("#2 fRead a file");
+   puts("#3 fAppend a file");
+   printf("Choose the option: ");
+   scanf(" %d",&ch);
+   fflush(stdin);
+   switch(ch)
+   {
+   case 1:
+    fwrt(b1);
+    break;
+   case 2:
+    fred(b1);
+    break;
+   case 3:
+    fapd(b1);
+    break;
+   default:
+       printf("Invalid input");
+    break;
+   }
+
+    printf("\nDo you want to continue this process,\nPress 1:");
+    scanf(" %d",&opt);
+    if(opt==1)
+    {
+        system("cls");
+    }
+    else
+        printf("Process has been terminated");
+    }while(opt==1);
+}
 ---------------------------------------------------
+
 
 
