@@ -1769,5 +1769,280 @@ for example
 .....
 .....
 */-----------------------------------------------------------------------
+//29-03-2021
+#include <stdio.h>
+/* programming trivia
+* FILE is a structure (non primitive data type)
+typedef struct
+{
+  short level;
+  unsigned flags;
+  char fd;
+  unsigned char hold;
+  short bsize;
+  unsigned char *buffer;
+  unsigned char *curp;
+  unsigned istemp;
+  short token;
+}FILE;
+Note: this FILE datatype is already declared on stdio.h preprocessor
+so, you don't need to make struct separately
+*/
+int main()
+{
+    int i;
+FILE *fp; //file pointer
+char s[]="Hello Students of india";
+fp=fopen("f1.txt","w");
+if(fp==NULL)
+{
+  printf("File cannot open");
+   exit(1);
+}
+else
+    printf("File created and written sucessfully");
+for(i=0;i<strlen(s);i++)
+   fputc(s[i],fp);
+fclose(fp);
+//after build and run it will create a file on you drive
+}
+-----------------------------------------------------------------
+#include <stdio.h>
+//taking input by user to write something on file
+int main()
+{
+    int i;
+    FILE *fp; //file pointer
+    char s[100];
+    fp=fopen("f1.txt","w");
+    if(fp==NULL)
+{
+    printf("File cannot open");
+    exit(1);
+}
+    printf("Enter the string Message :");
+    gets(s);
+    for(i=0;i<strlen(s);i++)
+    fputc(s[i],fp);
+       printf("message is on buffer, please open the file to check the info\n");
+    getch();//open the file , you can see there is not info here,
+           //because file on buffer, it has not written anything yet
+    fclose(fp);
+    getch();
+    printf("File has been written successfully");
+}
+-----------------------------------------------------------------------------------
+//31-03-2021
+#include <stdio.h>
+int main()
+{
+  FILE *fp;
+  fp=fopen("myfile.dat","r");
+  if(fp==NULL)//if mode is r or r+
+     printf("File not FOUND");
+
+}
+/*
+fopen() //syntax
+fp=fopen("filename","mode);//where fp is file pointer
+
+Mode-meaning   - Description
+r   - Read     -Only reading possible. Not create file if not exist
+w   - Write    -Only writing possible. Create file if not exist otherwise
+                erase the old content of file and open as a blank file
+a   - Append   -Only writing possible. Create file if not exist, otherwise
+                open file and write from the end of file (do not erase the old content)
+r+  - Reading+ - R & W possible. Create file if not exist. Overwriting
+      Writing    exiting data. Used for modifying content
+w+  - Reading+ - R & W possible. Create file if not exist. Erase old content.
+      Writing
+a+  - Reading+ - R & W possible. Create file if not exist. Append content at
+     Appending   the end of file
+*/
+//------------------------------------------------------
+//31-03-2021
+#include <stdio.h>
+/*
+Reading from a file means
+* Extracting data from a file to our program variables
+* This will not remove data from the file
+*/
+int main()
+{
+   char ch;
+   FILE *fp;
+   fp=fopen("f1.txt","r");
+   if(fp==NULL)
+   { printf("404 FILE Not Found");
+     exit(1);
+   }
+   ch=fgetc(fp);//this function return first character from file
+   while(!feof(fp))//end of file function
+   {
+     printf("%c",ch);
+     ch=fgetc(fp);
+   }
+   fclose(fp);
+}
+------------------------------------------------------------------------------
+//04-04-2021
+#include <stdio.h>
+/*
+* fgets() is a function to read string from a file
+* fgets(str,n,fp);
+* fgets returns a NULL value when it reads EOF
+*/
+int main()
+{
+   char str[10];
+   FILE *fp;
+   fp=fopen("f1.txt","r");
+   if(fp==NULL)
+   { printf("404 FILE Not Found");
+     exit(1);
+   }
+   while(fgets(str,9,fp)!=NULL)//string "char str[10]", no. of characters,file pointer
+   { printf("%s",str);}
+
+   fclose(fp);
+}
+
+------------------------------------------------------------------------------
+//04-04-2021
+#include <stdio.h>
+//taking input by user to write something on file
+int main()
+{
+    int i;
+    FILE *fp; //file pointer
+    char s[100],ch;
+    fp=fopen("f1.txt","w");
+    printf("Enter the string Message :");
+    gets(s);
+    for(i=0;i<strlen(s);i++)
+    fputc(s[i],fp);
+       printf("message is on buffer, please open the file to check the info\n");
+    getch();
+    printf("take another character\n");
+    getc(ch);
+    fclose(fp);
+    getch();
+    printf("File has been written successfully");
+}
+------------------------------------------------------------------------------
+//29-04-2021
+//because of practical  exam
+#include <stdio.h>
+/*
+fputs()
+* fputs() is a function declared in stdio.h header file
+* fputs(str,fp); //string , file pointer
+*/
+int main()
+{
+  char str[20];
+  FILE *fp;
+  fp=fopen("f1.txt","a");
+  printf("Enter your name: ");
+  gets(str);
+  fputs(str,fp);
+  fclose(fp);
+  printf("File has been written successfully");
+
+}
+---------------------------------------------------------------
+//Experiment to write ,read and ascend
+#include <stdio.h>
+
+void fileappend()
+{
+    int i;
+    char s[100];
+    FILE *fp;
+    fp=fopen("f1.txt","a");
+    printf("Enter the string Message :");
+    //scanf(" %s",&s);
+    gets(s); // it does not work if buffer is not empty
+    for(i=0;i<strlen(s);i++)
+    fputc(s[i],fp);
+       printf("message is on buffer(RAM), please open the file to check the info\n");
+    //getch();
+    fclose(fp);
+    getch();
+    printf("File has been written successfully");
+}
+void filewrite()
+{
+    /*
+
+    */
+   char str[20];
+   FILE *fp;
+   fp=fopen("f1.txt","w");
+   printf("Enter your name: ");
+   //scanf(" %s",&str);
+   gets(str);
+   fputs(str,fp);
+   fclose(fp);
+   printf("File has been written successfully");
+
+}
+void fileread()
+{
+   char ch;
+   FILE *fp;
+   fp=fopen("f1.txt","r");
+   if(fp==NULL)
+   { printf("404 FILE Not Found");
+     exit(1);
+   }
+   ch=fgetc(fp);
+   while(!feof(fp))
+   {
+     printf("%c",ch);
+     ch=fgetc(fp);
+   }
+   fclose(fp);
+}
+
+int main()
+{
+   int ch,opt;
+   do{
+   puts("#1 Write a file");
+   puts("#2 Read a file");
+   puts("#3 Append a file");
+   printf("Choose the option");
+   scanf(" %d",&ch);
+   fflush(stdin);// to clean buffer from memory, use this when other scanf or gets doesn't take input ,skipped the line
+   switch(ch)
+   {
+   case 1:
+    filewrite();
+    break;
+   case 2:
+    fileread();
+    break;
+   case 3:
+    fileappend();
+   default:
+       printf("Invalid input");
+    break;
+   }
+
+    printf("\nDo you want to continue this process,\nPress 1:");
+    scanf(" %d",&opt);
+    if(opt==1)
+    {
+        system("cls");
+    }
+    else
+        printf("Process has been terminated");
+    }while(opt==1);
+}
+-------------------------------------------------------------
+
+
+
 
 
