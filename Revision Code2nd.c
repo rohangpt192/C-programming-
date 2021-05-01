@@ -2114,6 +2114,7 @@ void main()
 
 }
 ---------------------------------------------------
+//01-05-2021 added some option
 //Experiment to use fwrite and fread
 #include <stdio.h>
 struct book
@@ -2133,10 +2134,9 @@ void fred(struct book b1)
     printf("BookId Title Price\n");
 
    while(fread(&b1,sizeof(b1),1,fp)>0)
-   {   printf("%d. %s %.2f\n",b1.bookid,b1.title,b1.price); }
+   {   printf("%d. %s $%.2f/-\n",b1.bookid,b1.title,b1.price); }
 
    fclose(fp);
-
 }
 
 void fapd(struct book b1)
@@ -2144,10 +2144,13 @@ void fapd(struct book b1)
    FILE *fp;
    fp=fopen("myfile.dat","ab");//ab = ascend binary mode
    printf("Enter bookid,Title and price:\n");
+   printf("Bookid:");
    scanf(" %d",&b1.bookid);
    fflush(stdin); //to clean buffer from memory
+   printf("Book Title:");
    gets(b1.title);
-   scanf(" %f",&b1.price);//it will get skipped if buffer was empty
+   printf("Book Price:");
+   scanf(" %f",&b1.price);//it will get skipped if buffer was full
    fwrite(&b1,sizeof(b1),1,fp);
    fclose(fp);
    printf("File has been written successfully");
@@ -2162,7 +2165,7 @@ void fwrt(struct book b1)
    scanf(" %d",&b1.bookid);
    fflush(stdin); //to clean buffer from memory
    gets(b1.title);
-   scanf(" %f",&b1.price);//it will get skipped if buffer was empty
+   scanf(" %f",&b1.price);//it will get skipped if buffer was full
    fwrite(&b1,sizeof(b1),1,fp);
    fclose(fp);
    printf("File has been written successfully");
@@ -2206,7 +2209,112 @@ void main()
         printf("Process has been terminated");
     }while(opt==1);
 }
----------------------------------------------------
 
+---------------------------------------------------
+//using fprintf to write info on file and read it
+#include <stdio.h>
+/*
+fprintf()
+* fprintf() function is used to write formatted output to the specified stream
+  Syntax:
+* int fprintf(FILE *stream,const char *format [argument,...]);
+* fprintf(fp,"nSum of %d and %d is %d",a,b,c);
+*/
+int main()
+{
+   FILE *fp;
+   char str[10];
+   int a,b,op,opt;
+   do{
+   printf("Do you want to 1. write or 2.Read the file : ");
+   scanf(" %d",&op);
+   fflush(stdin);
+   switch(op)
+   {
+   case 1:
+   printf("Write the info in the file\n");
+   fp=fopen("f1.txt","w");
+   printf("Enter two numbers");
+   scanf(" %d %d",&a,&b);
+   fprintf(fp,"Sum of %d and %d is %d",a,b,a+b);
+   fflush(stdin);
+   fclose(fp);
+   break;
+   case 2:
+   fp=fopen("f1.txt","r");
+   printf("Read the result from file\n");
+   if(fp==NULL)
+   { printf("404 FILE Not Found");
+     exit(1);
+   }
+   while(fgets(str,9,fp)!=NULL)
+   {
+       printf("%s",str);
+   }
+   fclose(fp);
+   break;
+   }
+    printf("\nDo you want to continue this process,\nPress 1:");
+    scanf(" %d",&opt);
+    if(opt==1)
+    {
+        system("cls");
+    }
+    else
+        printf("Process has been terminated");
+    }while(opt==1);
+}
+--------------------------------------------------------------------
+//Experiment using fprintf for write and append
+#include <stdio.h>
+int main()
+{
+   FILE *fp;
+   char ch;
+   int a,b,op;
+   printf("Do you want to 1. write ,2. append or 3.Read the file : ");
+   scanf(" %d",&op);
+   fflush(stdin);//to clean buffer from memory to get the result
+   switch(op)
+   {
+   case 1:
+    fp=fopen("f1.txt","w");
+   printf("Enter two numbers");
+   scanf(" %d %d",&a,&b);
+   fprintf(fp,"Sum of %d and %d is %d",a,b,a+b);
+   fclose(fp);
+   break;
+   case 2:
+       fp=fopen("f1.txt","a");
+   printf("Enter two numbers");
+   scanf(" %d %d",&a,&b);
+   fprintf(fp,"\nSum of %d and %d is %d",a,b,a+b);
+   fclose(fp);
+
+   break;
+
+   case 3:
+      fp=fopen("f1.txt","r");
+   printf("Read the result from file\n");
+   if(fp==NULL)
+   { printf("404 FILE Not Found");
+     exit(1);
+   }
+   ch=fgetc(fp);
+   while(!feof(fp))
+   {
+     printf("%c",ch);
+     ch=fgetc(fp);
+   }
+   fclose(fp);
+   break;
+
+
+   default:
+     printf("Invalid Input");
+    break;
+   }
+}
+-----------------------------------------------------------
 
 
