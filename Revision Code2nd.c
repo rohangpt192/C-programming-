@@ -2374,8 +2374,81 @@ Automatic| auto    | Garbage | RAM     |Limited to the block   |Till the executi
 Register | register| Garbage | register|Same                   |Same
 Static   | static  | 0 (zero | RAM     |Same                   |Till the end of program
 External | extern  | 0 (zero | RAM     |Global                 |Same
-
 */
+------------------------++++++++++++++++---------------------
+//Storage class Example codes
+// #1 automatic storage classes example
+#include <stdio.h>
+int main()
+{
+    int x=2;
+    printf("x=%d\n",x);
+    {
+        int x=5;
+        printf("x=%d\n",x);
+    }
+    printf("x=%d",x);
+
+}
+/*Register storage classes can give you good performance in execution
+because it sends value to memory(RAM) to register (CPU) time to time
+whenever "register int x=4;" calls
+but there is no guarantee of outcome result*/
+--------------+++++++++++----------------------
+//Storage class Example codes
+//#include <stdio.h> you could do that program will run without "#include <stdio.h>"
+void f1();//function prototype
+//int main()
+main()
+{
+    f1();
+    f1();
+}
+void f1() //function declaration
+{
+    //int i=0;//just for not to get garbage random value
+    static int i;//because default value is 0 aka zero
+    i++;//i=i+1 incremented
+    printf("i=%d\n",i);
+}
+/*Output without using static
+  i=1
+  i=1
+  Output with using static
+  i=1
+  i=2
+  because value did not destroyed or erase after function ended at one scope
+  it applied in whole program until program fully ended
+*/
+
+------------+++++++++++------------
+//03-05-2021
+//Storage class Example codes
+//External Storage classes
+//#include <stdio.h>
+//int x;
+//Global variable, which apply on whole program if new x value is not present on another scope {...}
+//it is default of External storage classes when value on Global
+main()
+{
+ extern int x;/*it is not work like main variable,
+ //the main purpose of "extern" to inform the complier that
+ //there is variable exist outside of main() function
+ if variable exist bellow the scope*/
+ printf("x=%d\n",x);
+ f1();
+ printf("x=%d\n",x);
+}
+int x;// it wont work unless we use "extern int x;" in main()
+void f1()
+{
+ x++;
+ printf("x=%d\n",x);
+}
+--------------------------------------------------------------
+
+
+
 
 
 
