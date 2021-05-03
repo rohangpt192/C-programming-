@@ -2395,7 +2395,7 @@ because it sends value to memory(RAM) to register (CPU) time to time
 whenever "register int x=4;" calls
 but there is no guarantee of outcome result*/
 --------------+++++++++++----------------------
-//Storage class Example codes
+//Static Storage class Example codes
 //#include <stdio.h> you could do that program will run without "#include <stdio.h>"
 void f1();//function prototype
 //int main()
