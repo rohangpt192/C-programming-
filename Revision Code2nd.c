@@ -2316,5 +2316,66 @@ int main()
    }
 }
 -----------------------------------------------------------
+//02-05-2021
+//using fscanf to read the in default order
+#include <stdio.h>
+int main()
+{
+
+/* fscanf()
+*fscanf() function is used to read formatted content from file
+SYNTAX
+* int fscanf(FILE * stream,const char *format,..);
+* Read data from the stream and store them according to the
+  parameter format into the locations pointed by the additonal arguements.
+*/
+FILE *fp;
+int a,b,c;
+fp=fopen("f1.txt","r");
+//fscanf(fp,"%d%d%d",&a,&b,&c);
+/* Inside the file,if values are
+20
+30
+50
+*/
+fscanf(fp,"%d,%d,%d",&a,&b,&c);
+/* Inside the file,if values are
+20,30,50 */
+printf("a=%d b=%d c=%d",a,b,c);
+fclose(fp);
+}
+----------------------------------------------------------------------
+//30-05-2021
+//Storage class (categories)
+/* Characteristic  of a variable
+int x=5;
+*Three properties of variables
+-Name of variable
+-Size of memory block
+-Type of content
+
+Other properties of variable
+* Default Value
+* Storage //
+* Scope //{ scope }
+* Life //bulid to destory
+
+Type of Storage classes
+* Automatic //it is by default by program
+* Register
+* Static
+* External
+
+CHART
+Storage  | Keyword | Default | Storage | Scope                 | Life
+class    |         | Value   |         |                       |
+Automatic| auto    | Garbage | RAM     |Limited to the block   |Till the execution of the block
+         |         |         |         |in which it is declared|in which it is declared
+Register | register| Garbage | register|Same                   |Same
+Static   | static  | 0 (zero | RAM     |Same                   |Till the end of program
+External | extern  | 0 (zero | RAM     |Global                 |Same
+
+*/
+
 
 
