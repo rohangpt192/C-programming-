@@ -2345,7 +2345,7 @@ printf("a=%d b=%d c=%d",a,b,c);
 fclose(fp);
 }
 ----------------------------------------------------------------------
-//30-05-2021
+//03-05-2021
 //Storage class (categories)
 /* Characteristic  of a variable
 int x=5;
