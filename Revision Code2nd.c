@@ -2446,6 +2446,23 @@ void f1()
  printf("x=%d\n",x);
 }
 --------------------------------------------------------------
+//testgraph.cpp
+#include <graphics.h>
+int main()
+{
+   int gd=0,gm;
+   initgraph(&gd,&gm,"");
+   setcolor(14);
+   circle(200,200,50);
+   rectangle(200,100,400,400);
+   ellipse(250,240,0,360,40,100);
+   getch();
+   closegraph();
+   return 0;
+
+
+}
+
 
 
 
