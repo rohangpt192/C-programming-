@@ -2462,6 +2462,38 @@ int main()
 
 
 }
+-----------------------------------------------------------
+//07-05-2021
+//beep sound
+#include <stdio.h>
+#include <windows.h>
+#include <dos.h>
+int cube(int);
+void beep()
+{
+    printf("\a");
+
+}
+void main()
+{
+    int n;
+    printf("The cube of 10 is %d\n",cube(10));
+    printf("Enter the integer: ");
+    scanf(" %d",&n);
+    if (n<1)
+    {
+        Beep(750, 300);//printf("\a"); is also use for beep sound but it does not work in gcc-compiler
+        printf("Invalid Input");
+    }
+    else
+      printf("The cube of %d is %d",n,cube(n));
+}
+int cube(int i)
+{
+    int retval;
+    retval= i*i*i;
+    return retval;
+}
 
 
 
