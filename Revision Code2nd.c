@@ -2344,6 +2344,16 @@ fscanf(fp,"%d,%d,%d",&a,&b,&c);
 printf("a=%d b=%d c=%d",a,b,c);
 fclose(fp);
 }
+-------------------------------------------------------------------
+/* FILE TYPES (09-05-2021)
+   | Writing  | Reading | Used on               |
+   | fputc()  | fgetc() | Individual characters |
+   | fputs()  | fgets() | Character strings     |
+   | fprintf()| fscanf()| Formatted ASCII       |
+   | fwrite() | fread() | Binary files          |
+   | fread()  | read()  | Low level binary      |
+
+*/
 ----------------------------------------------------------------------
 //03-05-2021
 //Storage class (categories)
