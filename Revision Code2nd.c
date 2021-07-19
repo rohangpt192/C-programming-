@@ -977,9 +977,9 @@ void main()
 void main()
 {
     int i,j,m,n,ar[20][10];
-    printf("Set limit for Row   (vertical down)     less than 20:");
+    printf("Set limit for Row (Horizontal right) less than 20:");
     scanf("%d",&m);
-    printf("Set limit for Column (Horizontal right) less than 10:");
+    printf("Set limit for Column (vertical down) less than 10:");
     scanf("%d",&n);
     printf("Rows are:%d,\nColumn are: %d,\nRequire to input:%d\n",m,n,m*n);
     printf("Enter the array:\n");
